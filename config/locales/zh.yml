@@ -1,7 +1,7 @@
-en:
-  top_menu_item_title: "Dashboard"
-  settings_header_statuses: "Statuses colors"
-  settings_header_projects: "Projects colors"
+zh:
+  top_menu_item_title: "主面板"
+  settings_header_statuses: "状态颜色"
+  settings_header_projects: "项目颜色"
   settings_header_other: "Other"
   settings_use_drop_down_menu: 'Use drop-down menu for the project choosing'
   settings_display_closed_statuses: 'Display "closed" statuses'
@@ -11,5 +11,5 @@ en:
   settings_generate_colors: "Generate colors"
   executor_not_set: "Not set"
   label_all: "All"
-  controller_select_project_label: "Select Project: "
-  controller_select_tracker_label: "Select Tracker: "
+  controller_select_project_label: "选择项目: "
+  controller_select_tracker_label: "选择类型: "

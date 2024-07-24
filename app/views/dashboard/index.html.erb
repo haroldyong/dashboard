@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <% end %>
 
+<%=l :controller_select_project_label %>
 <% if @use_drop_down_menu %>
 	<select id="select_project">
 		<% @projects.each do |project_id, project| %>
@@ -26,6 +27,8 @@
 		<% end %>
 	</div>
 <% end %>
+
+<%=l :controller_select_tracker_label %>
 
 <select id="select_tracker">
 	<%  @trackers.each do |tracker_id, tracker| %>

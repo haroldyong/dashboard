@@ -11,3 +11,5 @@ ru:
   settings_generate_colors: "Сгенерировать цвета"
   executor_not_set: "Не установлен"
   label_all: "Все"
+  controller_select_project_label: "Select Project: "
+  controller_select_tracker_label: "Select Tracker: "

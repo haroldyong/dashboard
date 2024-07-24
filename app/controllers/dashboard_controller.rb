@@ -10,9 +10,9 @@ class DashboardController < ApplicationController
     @display_minimized_closed_issue_cards = Setting.plugin_dashboard['display_closed_statuses'] ? Setting.plugin_dashboard['display_minimized_closed_issue_cards'] : false
     @statuses = get_statuses
     @projects = get_projects
-    @issues = get_issues(@selected_project_id, show_sub_tasks)
-    @selected_tracker_id = params[:tracker_id].nil? ? -1 : params[:tracker_id].to_i
     @trackers = get_trackers
+    @selected_tracker_id = params[:tracker_id].nil? ? -1 : params[:tracker_id].to_i
+    @issues = get_issues(@selected_project_id, @selected_tracker_id,show_sub_tasks)
   end
 
   def set_issue_status
@@ -81,20 +81,29 @@ class DashboardController < ApplicationController
     end
   end
 
-  def get_issues(project_id, with_sub_tasks)
+  def get_issues(project_id, tracker_id, with_sub_tasks)
     id_array = []
 
     if project_id != -1
       id_array.push(project_id)
     end
-
     # fill array of children ids
     if project_id != -1 && with_sub_tasks
       project = Project.find(project_id)
       add_children_ids(id_array, project)
     end
+    # fill tracker ids
+    tracker_id_array = []
+    if tracker_id != -1
+      tracker_id_array.push(tracker_id)
+    else
+      Tracker.visible.each do |item|
+        tracker_id_array.push(item.id)
+      end
+    end
 
-    items = id_array.empty? ? Issue.visible : Issue.visible.where(:projects => {:id => id_array})
+    items = id_array.empty? ? Issue.visible.where({:tracker_id => tracker_id_array}) : Issue.visible.where(:projects => {:id => id_array} ).where(
+      {:tracker_id => tracker_id_array})
 
     unless Setting.plugin_dashboard['display_closed_statuses']
       items = items.open
@@ -106,6 +115,7 @@ class DashboardController < ApplicationController
         :subject => item.subject,
         :status_id => item.status.id,
         :project_id => item.project.id,
+        :tracker_id => item.tracker.id,
         :created_on => item.created_on,
         :author => item.author.name(User::USER_FORMATS[:firstname_lastname]),
         :executor => item.assigned_to.nil? ? '' : item.assigned_to.name

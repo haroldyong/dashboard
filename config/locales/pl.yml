@@ -11,3 +11,5 @@ pl:
   settings_generate_colors: "Wygeneruj kolory"
   executor_not_set: "Nie przydzielono"
   label_all: "Wszystkie"
+  controller_select_project_label: "Select Project: "
+  controller_select_tracker_label: "Select Tracker: "
