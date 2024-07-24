@@ -11,6 +11,8 @@ class DashboardController < ApplicationController
     @statuses = get_statuses
     @projects = get_projects
     @issues = get_issues(@selected_project_id, show_sub_tasks)
+    @selected_tracker_id = params[:tracker_id].nil? ? -1 : params[:tracker_id].to_i
+    @trackers = get_trackers
   end
 
   def set_issue_status
@@ -39,6 +41,19 @@ class DashboardController < ApplicationController
         :name => item.name,
         :color => Setting.plugin_dashboard["status_color_" + item.id.to_s],
         :is_closed => item.is_closed
+      }
+    end
+    data
+  end
+
+  def get_trackers
+    data = {-1 => {
+      :name => l(:label_all),
+      :color => '#4ec7ff'
+    }}
+    Tracker.visible.each do |item|
+      data[item.id] = {
+        :name => item.name
       }
     end
     data

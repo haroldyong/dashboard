@@ -27,6 +27,16 @@
 	</div>
 <% end %>
 
+<select id="select_tracker">
+	<%  @trackers.each do |tracker_id, tracker| %>
+		<% if tracker_id == @selected_tracker_id %>
+			<option selected value="<%= tracker_id %>"><%= tracker[:name] %></option>
+		<% else %>
+			<option value="<%= tracker_id %>"><%= tracker[:name] %></option>
+		<% end %>
+	<% end %>
+</select>
+
 <div class="issues_container">
 	<% @statuses.each do |status_id, status| %>
 		<div class="status_column" data-id="<%= status_id %>">
