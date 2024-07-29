@@ -19,8 +19,16 @@ function goToIssue(id) {
     location.href = `${baseUri}/issues/${id}`;
 }
 
-function chooseProject(projectId) {
-    trackerId = document.querySelector('#select_tracker').value;
+function chooseProject(projectId, isSelectMode) {
+    trackerId = -1
+    if(isSelectMode){
+        trackerId = document.querySelector('#select_tracker').value;
+    }
+    else{
+        const trackerItem =  document.querySelector('.select_tracker_item_selected');
+        trackerId = trackerItem.dataset.id;
+    }
+    
     if (typeof trackerId !== 'undefined' && trackerId !== null && trackerId !== '') {
         chooseProject4Tracker(projectId,trackerId);
     }
@@ -28,8 +36,16 @@ function chooseProject(projectId) {
         location.search = `project_id=${projectId}`;   
     }
 }
-function chooseTracker(trackerId) {
-    projectId = document.querySelector('#select_project').value;
+function chooseTracker(trackerId,isSelectMode) {
+    projectId = -1
+    if(isSelectMode){
+        projectId = document.querySelector('#select_project').value;
+    }
+    else{
+        const projectItem =  document.querySelector('.select_project_item_selected');
+        projectId = projectItem.dataset.id;
+    }
+
     if (typeof projectId !== 'undefined' && projectId !== null && projectId !== '') {
         chooseProject4Tracker(projectId,trackerId);
     }
@@ -67,28 +83,28 @@ function init(useDragAndDrop) {
 
     document.querySelectorAll('.select_project_item').forEach(item => {
         item.addEventListener('click', function() {
-            chooseProject(this.dataset.id);
+            chooseProject(this.dataset.id,false);
         })
     });
 
     const projectsSelector = document.querySelector('#select_project');
     if (projectsSelector != null) {
         projectsSelector.addEventListener('change', function(e) {
-            chooseProject(this.value);
+            chooseProject(this.value,true);
         });
     }
 
 
     document.querySelectorAll('.select_tracker_item').forEach(item => {
         item.addEventListener('click', function() {
-            chooseTracker(this.dataset.id);
+            chooseTracker(this.dataset.id,false);
         })
     });
 
     const trackersSelector = document.querySelector('#select_tracker');
     if (trackersSelector != null) { 
         trackersSelector.addEventListener('change', function(e) {
-            chooseTracker(this.value);
+            chooseTracker(this.value,true);
         });
     }
 
