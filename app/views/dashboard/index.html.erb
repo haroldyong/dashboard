@@ -29,16 +29,27 @@
 <% end %>
 
 <%=l :controller_select_tracker_label %>
-
-<select id="select_tracker">
-	<%  @trackers.each do |tracker_id, tracker| %>
-		<% if tracker_id == @selected_tracker_id %>
-			<option selected value="<%= tracker_id %>"><%= tracker[:name] %></option>
-		<% else %>
-			<option value="<%= tracker_id %>"><%= tracker[:name] %></option>
+<% if @use_drop_down_menu %>
+	<select id="select_tracker">
+		<% @trackers.each do |tracker_id, tracker| %>
+			<% if tracker_id == @selected_tracker_id %>
+				<option selected value="<%= tracker_id %>"><%= tracker[:name] %></option>
+			<% else %>
+				<option value="<%= tracker_id %>"><%= tracker[:name] %></option>
+			<% end %>
 		<% end %>
-	<% end %>
-</select>
+	</select>
+<% else %>
+	<div class="select_tracker_container">
+		<% @trackers.each do |tracker_id, tracker| %>
+			<% if tracker_id == @selected_tracker_id %>
+				<div class="select_tracker_item select_tracker_item_selected" data-id="<%= tracker_id %>"><%= tracker[:name] %></div>
+			<% else %>
+				<div class="select_tracker_item" ><%= tracker[:name] %></div>
+			<% end %>
+		<% end %>
+	</div>
+<% end %>
 
 <div class="issues_container">
 	<% @statuses.each do |status_id, status| %>
