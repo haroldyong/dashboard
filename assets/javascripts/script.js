@@ -20,18 +20,23 @@ function goToIssue(id) {
 }
 
 function chooseProject(projectId) {
-    if (projectId == "-1") {
-        location.search = "";
-    } else {
+    trackerId = document.querySelector('#select_tracker').value;
+    if (typeof trackerId !== 'undefined' && trackerId !== null && trackerId !== '') {
+        chooseProject4Tracker(projectId,trackerId);
+    }
+     else {
         location.search = `project_id=${projectId}`;   
     }
 }
 function chooseTracker(trackerId) {
-    if (trackerId == "-1") {
-        location.search = "";
-    } else {
-        location.search = `tracker_id=${trackerId}`;   
+    projectId = document.querySelector('#select_project').value;
+    if (typeof projectId !== 'undefined' && projectId !== null && projectId !== '') {
+        chooseProject4Tracker(projectId,trackerId);
     }
+    else{
+        location.search = `tracker_id=${trackerId}`;     
+    }
+
 }
 
 function chooseProject4Tracker(projectId,trackerId) {
