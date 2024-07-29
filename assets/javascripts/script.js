@@ -26,6 +26,29 @@ function chooseProject(projectId) {
         location.search = `project_id=${projectId}`;   
     }
 }
+function chooseTracker(trackerId) {
+    if (trackerId == "-1") {
+        location.search = "";
+    } else {
+        location.search = `tracker_id=${trackerId}`;   
+    }
+}
+
+function chooseProject4Tracker(projectId,trackerId) {
+    if (projectId == "-1" &&  trackerId == "-1") {
+        location.search = "";
+    }        
+    if (projectId == "-1" && trackerId != "-1") {
+        location.search = `tracker_id=${trackerId}`; 
+    } 
+    if (projectId != "-1" && trackerId == "-1"){
+        location.search = `project_id=${projectId}`;
+    } 
+    if (projectId != "-1" && trackerId != "-1"){
+        location.search =  `project_id=${projectId}&&tracker_id=${trackerId}`;      
+    }
+}
+
 
 async function setIssueStatus(issueId, statusId, item, oldContainer, oldIndex) { 
     const response = await fetch(`${getUriWithDashboard()}/set_issue_status/${issueId}/${statusId}`);
@@ -49,6 +72,21 @@ function init(useDragAndDrop) {
             chooseProject(this.value);
         });
     }
+
+
+    document.querySelectorAll('.select_tracker_item').forEach(item => {
+        item.addEventListener('click', function() {
+            chooseTracker(this.dataset.id);
+        })
+    });
+
+    const trackersSelector = document.querySelector('#select_tracker');
+    if (trackersSelector != null) { 
+        trackersSelector.addEventListener('change', function(e) {
+            chooseTracker(this.value);
+        });
+    }
+
 
     document.querySelector("#content").style.overflow = "hidden"; 
 
