@@ -1,8 +1,8 @@
 Redmine::Plugin.register :dashboard do
   name 'Dashboard'
-  author "Akpaev E.A."
+  author "Harold"
   description "Plugin adds an issues dashboard to the application "
-  version '1.0.11'
+  version '2.0.1'
   url 'https://github.com/akpaevj/Dashboard'
   author_url 'https://github.com/akpaevj'
   menu :top_menu, :dashboard, { controller: 'dashboard', action: 'index' }, caption: :top_menu_item_title, first: true

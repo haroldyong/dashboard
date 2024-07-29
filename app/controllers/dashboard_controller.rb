@@ -53,7 +53,8 @@ class DashboardController < ApplicationController
     }}
     Tracker.visible.each do |item|
       data[item.id] = {
-        :name => item.name
+        :name => item.name,
+        :color => Setting.plugin_dashboard["status_color_" + item.id.to_s]
       }
     end
     data

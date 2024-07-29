@@ -2,14 +2,14 @@ zh:
   top_menu_item_title: "主面板"
   settings_header_statuses: "状态颜色"
   settings_header_projects: "项目颜色"
-  settings_header_other: "Other"
-  settings_use_drop_down_menu: 'Use drop-down menu for the project choosing'
-  settings_display_closed_statuses: 'Display "closed" statuses'
-  settings_display_child_projects_tasks: 'Display child projects tasks'
-  settings_display_minimized_closed_issue_cards: 'Display minimized "closed" issue cards'
-  settings_enable_drag_and_drop: '"Drag and drop" status changing'
-  settings_generate_colors: "Generate colors"
-  executor_not_set: "Not set"
-  label_all: "All"
+  settings_header_other: "其他"
+  settings_use_drop_down_menu: '是否使用下列列表模式'
+  settings_display_closed_statuses: '显示关闭状态'
+  settings_display_child_projects_tasks: '显示子项目任务'
+  settings_display_minimized_closed_issue_cards: '最小化'
+  settings_enable_drag_and_drop: '拖拉模式'
+  settings_generate_colors: "随机生成颜色"
+  executor_not_set: "不设置"
+  label_all: "所有"
   controller_select_project_label: "选择项目: "
   controller_select_tracker_label: "选择类型: "

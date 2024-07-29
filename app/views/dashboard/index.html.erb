@@ -43,9 +43,9 @@
 	<div class="select_tracker_container">
 		<% @trackers.each do |tracker_id, tracker| %>
 			<% if tracker_id == @selected_tracker_id %>
-				<div class="select_tracker_item select_tracker_item_selected" data-id="<%= tracker_id %>"><%= tracker[:name] %></div>
+				<div class="select_tracker_item select_tracker_item_selected" style="background-color: <%= tracker[:color] %>" data-id="<%= tracker_id %>"><%= tracker[:name] %></div>
 			<% else %>
-				<div class="select_tracker_item" ><%= tracker[:name] %></div>
+				<div class="select_tracker_item" style="background-color: <%= tracker[:color] %>" data-id="<%= tracker_id %>"><%= tracker[:name] %></div>
 			<% end %>
 		<% end %>
 	</div>
